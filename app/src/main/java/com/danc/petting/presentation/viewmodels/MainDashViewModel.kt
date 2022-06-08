@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainDashViewModel @Inject constructor(private val dogsUseCase: DogsUseCase): ViewModel() {
 
-    private val pets = MutableLiveData<Resource<Pets>>()
+    val pets = MutableLiveData<Resource<Pets>>()
 
     fun getPets() {
         dogsUseCase().onEach {

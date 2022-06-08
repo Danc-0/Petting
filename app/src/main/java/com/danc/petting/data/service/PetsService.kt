@@ -8,4 +8,7 @@ interface PetsService {
     @GET("breeds")
     suspend fun getDogs() : Pets
 
+    @GET("categories")
+    suspend fun getCategories() : Pets
+
 }
