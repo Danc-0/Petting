@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface PetsService {
 
-    @GET("/breeds")
+    @GET("breeds")
     suspend fun getDogs() : Pets
 
 }
