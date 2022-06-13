@@ -26,7 +26,8 @@ class MainDashViewModel @Inject constructor(private val dogsUseCase: DogsUseCase
                     }
 
                     is Resource.Success -> {
-                        pets.postValue(it)
+                        pets.value = it
+//                        pets.postValue(it)
                     }
 
                     is Resource.Error -> {
