@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.core.content.res.ResourcesCompat.getDrawable
+import androidx.paging.PagingData
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.load.engine.Resource
@@ -18,8 +21,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.pets_items.view.*
 import java.util.zip.Inflater
 
-class MainDashAdapter(private val petsItem: Pets?) :
-    RecyclerView.Adapter<MainDashAdapter.PetsViewHolder>() {
+class MainDashAdapter :
+    PagingDataAdapter<PetsItem, MainDashAdapter.PetsViewHolder>(DataDifferentiator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
         return PetsViewHolder(
@@ -28,12 +31,8 @@ class MainDashAdapter(private val petsItem: Pets?) :
     }
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
-        val singlePet = petsItem?.get(position)
+        val singlePet = getItem(position)
         holder.bindPets(singlePet!!)
-    }
-
-    override fun getItemCount(): Int {
-        return petsItem?.size!!
     }
 
     class PetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,6 +50,17 @@ class MainDashAdapter(private val petsItem: Pets?) :
             itemView.addToFav.setOnClickListener {
                 Snackbar.make(it, "Added to Favourites", Snackbar.LENGTH_LONG).show()
             }
+        }
+    }
+
+    object DataDifferentiator : DiffUtil.ItemCallback<PetsItem>() {
+
+        override fun areItemsTheSame(oldItem: PetsItem, newItem: PetsItem): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: PetsItem, newItem: PetsItem): Boolean {
+            return oldItem == newItem
         }
     }
 

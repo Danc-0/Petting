@@ -1,3 +1,6 @@
 package com.danc.petting.domain.models
 
-class Pets : ArrayList<PetsItem>()
+data class Pets(
+
+    val pets: List<PetsItem>
+)
