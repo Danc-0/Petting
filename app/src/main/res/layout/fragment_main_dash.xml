@@ -38,22 +38,22 @@
             android:text="@string/hello_blank_fragment"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/shapeableImageView" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_sort_24"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.99"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/shapeableImageView"
             app:tint="@color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -73,26 +73,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/white_rounded_background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <SearchView
             android:id="@+id/menu_search_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:closeIcon="@drawable/ic_baseline_close_24"
             android:iconifiedByDefault="false"
+            android:background="@drawable/white_rounded_background"
             android:imeOptions="actionDone"
             android:searchIcon="@drawable/ic_baseline_search_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".85"
             tools:queryHint="Search for pets" />
+
+        <ImageView
+            android:id="@+id/filterDogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_filter_list_24"
+            app:layout_constraintBottom_toBottomOf="@+id/menu_search_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/menu_search_view"
+            app:layout_constraintTop_toTopOf="@+id/menu_search_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,16 +6,17 @@ import com.danc.petting.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import retrofit2.Response
 import java.io.IOException
 import javax.inject.Inject
 
 class DogsUseCase @Inject constructor(private val service: PetsService) {
 
-    operator fun invoke(): Flow<Resource<Pets>> = flow {
+    operator fun invoke(pageLimit: Int, pageNumber: Int): Flow<Resource<Response<Pets>>> = flow {
         try {
             emit(Resource.Loading())
-            val pets = service.getDogs()
-            emit(Resource.Success(pets))
+            val pets = service.getDogs(pageLimit, pageNumber)
+//            emit(Resource.Success(pets))
         } catch (e: HttpException){
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException){
