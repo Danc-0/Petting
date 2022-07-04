@@ -7,20 +7,27 @@ import com.danc.petting.domain.models.Height
 import com.danc.petting.domain.models.Image
 import com.danc.petting.domain.models.Weight
 
-@Entity(tableName = "Pets and Dogs")
+@Entity(tableName = "petsanddogs")
 class LocalPetsItem(
     @PrimaryKey
-    @ColumnInfo(name = "PetsDogs")
-    val id: Int,
-
-    val bred_for: String,
-    val breed_group: String,
-    val country_code: String,
-    val description: String,
-    val history: String,
-    val life_span: String,
-    val name: String,
-    val origin: String,
-    val reference_image_id: String,
-    val temperament: String
+    @ColumnInfo(name = "petsDogs")
+    val id: Int?,
+    @ColumnInfo(name = "bredFor")
+    val bred_for: String?,
+    @ColumnInfo(name = "breedGroup")
+    val breed_group: String?,
+    @ColumnInfo(name = "lifeSpan")
+    val life_span: String?,
+    @ColumnInfo(name = "name")
+    val name: String?,
+    @ColumnInfo(name = "origin")
+    val origin: String?,
+    @ColumnInfo(name = "referrenceImage")
+    val reference_image_id: String?,
+    @ColumnInfo(name = "temperament")
+    val temperament: String?,
+    val imperial: String?,
+    val metric: String?,
+    val imperialHeight: String?,
+    val metricHeight: String?
 )

@@ -16,19 +16,19 @@ class DogsDataSource @Inject constructor(private val petsService: PetsService): 
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PetsItem> {
         val currentLoadingPageKey = params.key ?: FIRST_PAGE_INDEX
-        try {
-            val response = petsService.getDogs(10, currentLoadingPageKey)
+        return try {
+            val response = petsService.getDogs(20, currentLoadingPageKey)
 
             val previousKey = if (currentLoadingPageKey < 1) null else currentLoadingPageKey - 1
 
-            return LoadResult.Page(
+            LoadResult.Page(
                 data = response,
                 prevKey = previousKey,
                 nextKey = currentLoadingPageKey.plus(1)
             )
 
         } catch (e: Exception){
-            return LoadResult.Error(e)
+            LoadResult.Error(e)
         }
     }
 

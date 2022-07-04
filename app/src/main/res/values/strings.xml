@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Nairobi, Kenya</string>
     <string name="ready_to_make_a_new_friend">Ready to make a\nnew friend?</string>
     <string name="get_started">Get Started</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
 </resources>
