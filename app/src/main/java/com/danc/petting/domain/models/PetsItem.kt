@@ -5,7 +5,7 @@ data class PetsItem(
     val height: Height,
     val bred_for: String,
     val breed_group: String,
-    val country_code: String,
+    val country_code: String?,
     val description: String,
     val history: String,
     val id: Int,

@@ -21,6 +21,15 @@
         android:id="@+id/mainDashFragment"
         android:name="com.danc.petting.presentation.fragments.MainDashFragment"
         android:label="fragment_main_dash"
-        tools:layout="@layout/fragment_main_dash" />
+        tools:layout="@layout/fragment_main_dash" >
+        <action
+            android:id="@+id/action_mainDashFragment_to_favouritesFragment"
+            app:destination="@id/favouritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.danc.petting.presentation.fragments.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" />
 
 </navigation>

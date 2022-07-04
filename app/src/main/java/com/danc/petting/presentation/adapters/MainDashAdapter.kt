@@ -3,15 +3,17 @@ package com.danc.petting.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.danc.petting.R
 import com.danc.petting.domain.models.PetsItem
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.pets_items.view.*
 
-class MainDashAdapter :
+class MainDashAdapter(private val callback: AddToFavouriteCallBack) :
     PagingDataAdapter<PetsItem, MainDashAdapter.PetsViewHolder>(DataDifferentiator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
@@ -29,6 +31,10 @@ class MainDashAdapter :
             holder.itemView.imageLoader.visibility = View.VISIBLE
             holder.itemView.petImage.load(petsItem?.image?.url)
         }
+        holder.itemView.addToFav.setOnClickListener {
+            Snackbar.make(it, "Added to Favourites", Snackbar.LENGTH_LONG).show()
+            callback.addToFav(petsItem)
+        }
     }
 
     class PetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -44,7 +50,7 @@ class MainDashAdapter :
         }
     }
 
-    interface AddToFavourite {
-        fun addToFav()
+    interface AddToFavouriteCallBack {
+        fun addToFav(petsItem: PetsItem?)
     }
 }

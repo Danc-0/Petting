@@ -1,12 +1,17 @@
 package com.danc.petting.di
 
+import android.content.Context
+import androidx.room.Room
 import com.danc.petting.data.repository.PetsRepositoryImpl
+import com.danc.petting.data.room.DogsDao
+import com.danc.petting.data.room.DogsDatabase
 import com.danc.petting.data.service.PetsService
 import com.danc.petting.domain.repositories.PetsRepository
 import com.danc.petting.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -41,6 +46,22 @@ object AppModule {
     @Singleton
     fun providesPetsRepository(service: PetsService): PetsRepository {
         return PetsRepositoryImpl(service)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDogsDatabase(@ApplicationContext appContext: Context): DogsDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            DogsDatabase::class.java,
+            "pets_database"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDogsDao(appDatabase: DogsDatabase): DogsDao {
+        return appDatabase.dogsDao()
     }
 
 }
