@@ -13,6 +13,10 @@ Mobile App that fetches Dogs from THEDOGSAPI and display them with description a
     * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - is an observable data holder.
     * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - perform action when lifecycle state changes.
     * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - store and manage UI-related data in a lifecycle conscious fashion.
+    
+  ## Features
+    * Shimmering Effect
+    
 
   ## Architecture
     Clean Architecture
