@@ -2,6 +2,8 @@ package com.danc.petting.presentation.fragments
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -31,7 +33,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainDashFragment : Fragment(R.layout.fragment_main_dash), MainDashAdapter.AddToFavouriteCallBack {
+class MainDashFragment : Fragment(R.layout.fragment_main_dash),
+    MainDashAdapter.AddToFavouriteCallBack {
 
     private val viewModel: MainDashViewModel by viewModels()
     private var mainDashAdapter: MainDashAdapter? = null
@@ -48,13 +51,20 @@ class MainDashFragment : Fragment(R.layout.fragment_main_dash), MainDashAdapter.
         } else {
             2
         }
+
         rvDogsList.apply {
             layoutManager = GridLayoutManager(context, gridLayoutSpan)
             setHasFixedSize(true)
             adapter = mainDashAdapter
         }
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch(Dispatchers.IO) {
             viewModel.listData().collectLatest {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    shimmerFrameLayout.stopShimmerAnimation()
+                    shimmerFrameLayout.visibility = View.GONE
+                    rvDogsList.visibility = View.VISIBLE
+
+                }, 1000)
                 mainDashAdapter?.submitData(it)
 
             }
@@ -81,12 +91,23 @@ class MainDashFragment : Fragment(R.layout.fragment_main_dash), MainDashAdapter.
             petsItem?.height?.metric
         )
         viewModel.addFavourite(localPetsItem)
-        Navigation.findNavController(requireView()).navigate(R.id.action_mainDashFragment_to_favouritesFragment)
+        Navigation.findNavController(requireView())
+            .navigate(R.id.action_mainDashFragment_to_favouritesFragment)
     }
 
     private fun getAllFavourites() {
         viewModel.allFavouriteDogs.observe(viewLifecycleOwner) {
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        shimmerFrameLayout.startShimmerAnimation()
+    }
+
+    override fun onPause() {
+        shimmerFrameLayout.stopShimmerAnimation()
+        super.onPause()
     }
 }

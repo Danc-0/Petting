@@ -130,15 +130,63 @@
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        android:orientation="vertical">
+
+        <!-- Adding 15 rows of placeholders -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+
+            <include layout="@layout/shimmer_pets_items" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDogsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        tools:listitem="@layout/pets_items" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
